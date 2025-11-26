@@ -1,0 +1,101 @@
+/* post.css */
+
+/* 전체 페이지 스타일 */
+body {
+  font-family: "Malgun Gothic", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가로 중앙 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px 10px;
+  background-color: #f0f3f6; /* 부드러운 배경색 */
+  color: #343a40;
+}
+
+/* 제목 스타일 */
+h2 {
+  color: #007bff;
+  margin-bottom: 30px;
+  font-size: 2em;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* 포스트 내용 컨테이너 (postdiv) */
+div#postdiv {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* 개별 포스트 내부 div 스타일 */
+div#postdiv > div {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+/* 사용자 ID 스타일 */
+p.postUserId {
+  font-weight: bold;
+  color: #007bff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+/* 작성/수정 일자 스타일 */
+p.postCreatedAt,
+p.postUpdatedAt {
+  color: #6c757d;
+  font-size: 0.85em;
+  margin: 2px 0;
+}
+
+p.postUpdatedAt {
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #ced4da;
+  padding-bottom: 10px;
+}
+
+/* 포스트 본문 텍스트 스타일 */
+p.postText {
+  margin-top: 15px;
+  font-size: 1.15em;
+  line-height: 1.6;
+  white-space: pre-wrap; /* 줄바꿈 유지 */
+}
+
+/* 버튼 스타일 (수정/삭제) */
+button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+/* 수정하기 버튼 */
+button#update {
+  background-color: #ffc107; /* 노란색 */
+  color: #343a40;
+}
+
+button#update:hover {
+  background-color: #e0a800;
+}
+
+/* 삭제하기 버튼 */
+button#delete {
+  background-color: #dc3545; /* 빨간색 */
+  color: white;
+}
+
+button#delete:hover {
+  background-color: #c82333;
+}

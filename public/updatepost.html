@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글수정</title>
+    <link rel="stylesheet" href="./css/updatepost.css" />
+  </head>
+  <body>
+    <h2>글수정</h2>
+    <p><input type="text" id="text" placeholder="내용을 입력하세요" /></p>
+    <button id="updateBtn">수정완료</button>
+    <script>
+      const textbox = document.getElementById("text");
+      const updateBtn = document.getElementById("updateBtn");
+      window.onload = () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const postid = urlParams.get("postid");
+        const text = urlParams.get("text");
+        textbox.value = text;
+        const token = getCookie("token");
+
+        updateBtn.onclick = () => {
+          const updatedText = document.getElementById("text").value;
+          const data = { text: updatedText };
+          putUpdatePost(
+            `http://127.0.0.1:8080/post/${postid}`,
+            data,
+            token
+          ).then((result) => {
+            location.href = "./posthome.html";
+          });
+        };
+      };
+
+      function getCookie(name) {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split("; ");
+        for (let cookie of cookies) {
+          const [key, value] = cookie.split("=");
+          if (key === name) return value;
+        }
+        return null;
+      }
+
+      async function putUpdatePost(url, data, token) {
+        const options = {
+          method: "PUT", // HTTP 메서드 설정
+          headers: {
+            "Content-Type": "application/json", // 전송할 데이터 형식 명시
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        };
+
+        try {
+          const response = await fetch(url, options);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          return result;
+        } catch (error) {
+          console.error("PUT 요청 중 오류 발생:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+/* updatepost.css */
+
+/* 전체 페이지 스타일 */
+body {
+  font-family: "Malgun Gothic", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가로 중앙 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  padding: 50px 10px;
+  background-color: #f8f9fa; /* 연한 배경색 */
+  color: #343a40;
+}
+
+/* 제목 스타일 */
+h2 {
+  color: #ffc107; /* 수정 페이지에 맞는 노란색 계열 강조 */
+  margin-bottom: 30px;
+  font-size: 2em;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ffc107;
+}
+
+/* 입력 필드 컨테이너 (p) 스타일 */
+p {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 25px;
+}
+
+/* 입력 필드 (text) 스타일 */
+/* type="text"를 textarea처럼 보이도록 확장하여 긴 내용도 수정하기 편하게 합니다. */
+input#text {
+  width: 100%;
+  height: 250px; /* 입력 영역 높이 지정 */
+  padding: 15px;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
+  font-size: 1em;
+  line-height: 1.5;
+  resize: vertical; /* 세로 크기 조절 허용 */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  /* input 요소에 multi-line 텍스트 스타일 적용 */
+  white-space: pre-wrap; /* input은 기본적으로 single-line이지만 시각적 효과 부여 */
+}
+
+input#text:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+  outline: none;
+}
+
+/* 수정 완료 버튼 스타일 */
+button#updateBtn {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  background-color: #007bff; /* 파란색으로 최종 확인 강조 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#updateBtn:hover {
+  background-color: #0056b3;
+}

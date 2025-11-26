@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판홈</title>
+    <link rel="stylesheet" href="./css/posthome.css" />
+  </head>
+  <body>
+    <h2 id="head">게시판홈</h2>
+    <p><button id="postBtn">전체 글 보기</button></p>
+
+    <p>
+      특정 유저 글보기
+      <input type="text" id="userid" placeholder="유저아이디" />
+      <button id="useridBtn">글보기</button>
+    </p>
+    <p id="createpost">
+      <a href="createpost.html">글쓰러가기</a>
+    </p>
+    <script>
+      window.onload = () => {
+        const token = getCookie("token");
+        console.log(token);
+        const jwt = authMe("http://127.0.0.1:8080/auth/me", token);
+        console.log(jwt);
+      };
+
+      //전체 포스트 보러가기
+      const postBtn = document.getElementById("postBtn");
+      postBtn.onclick = () => {
+        location.href = "posts.html";
+      };
+
+      //특정 유저 포스트 보러가기
+      const useridBtn = document.getElementById("useridBtn");
+      useridBtn.onclick = () => {
+        const userid = document.getElementById("userid").value;
+        location.href = `posts.html?userid=${userid}`;
+      };
+
+      async function authMe(url, token) {
+        const options = {
+          method: "POST", // HTTP 메서드 설정
+          headers: {
+            "Content-Type": "application/json", // 전송할 데이터 형식 명시
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        try {
+          const response = await fetch(url, options);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log(result);
+        } catch (error) {
+          console.error("POST 요청 중 오류 발생:", error);
+        }
+      }
+
+      function getCookie(name) {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split("; ");
+        for (let cookie of cookies) {
+          const [key, value] = cookie.split("=");
+          if (key === name) return value;
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>

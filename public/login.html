@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+  <body>
+    <div>
+      <h2>로그인</h2>
+      <span><input type="text" placeholder="로그인" id="userid" /></span>
+      <span
+        ><input type="password" placeholder="비밀번호" id="password"
+      /></span>
+      <button id="login">로그인</button>
+      <p>계정이 없으면...? <a href="./signup.html">회원가입</a></p>
+    </div>
+    <script>
+      const loginBtn = document.getElementById("login");
+
+      async function postData(url, data) {
+        const options = {
+          method: "POST", // HTTP 메서드 설정
+          headers: {
+            "Content-Type": "application/json", // 전송할 데이터 형식 명시
+          },
+          body: JSON.stringify(data), // JavaScript 객체를 JSON 문자열로 변환
+        };
+
+        try {
+          const response = await fetch(url, options);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log(result); // 쿠키로 토큰저장 시켜야함
+          setCookie("token", result.token, 2);
+          return result;
+        } catch (error) {
+          console.error("POST 요청 중 오류 발생:", error);
+        }
+      }
+
+      function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        const expires = "expires=" + d.toUTCString();
+        document.cookie = `${name}=${value}; ${expires}; path/`;
+      }
+
+      loginBtn.onclick = () => {
+        const userid = document.getElementById("userid").value;
+        const password = document.getElementById("password").value;
+        const loginData = { userid, password };
+        postData("http://127.0.0.1:8080/auth/login", loginData).then(
+          (result) => {
+            if (result) {
+              location.href = "posthome.html";
+            } else {
+              alert("로그인 오류~");
+            }
+          }
+        );
+      };
+    </script>
+  </body>
+</html>

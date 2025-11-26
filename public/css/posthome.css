@@ -1,0 +1,121 @@
+/* posthome.css */
+
+/* 전체 페이지 스타일 및 중앙 정렬 */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column; /* 요소를 수직으로 배열 */
+  align-items: center; /* 가로 중앙 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 50px; /* 상단 여백 */
+  background-color: #f8f9fa; /* 연한 배경색 */
+  color: #343a40;
+}
+
+/* 메인 컨테이너 (h2부터 p까지를 감싸는 별도 div가 없으므로 body에 스타일 집중) */
+
+/* 제목 스타일 */
+h2#head {
+  color: #007bff; /* 파란색 강조 */
+  margin-bottom: 40px;
+  font-size: 2.2em;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #007bff;
+}
+
+/* 단락 (컨트롤 그룹) 스타일 */
+p {
+  margin: 15px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 450px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 요소들을 양 끝으로 분산 */
+}
+
+/* 전체 글 보기 버튼 스타일 */
+button#postBtn {
+  background-color: #28a745; /* 초록색 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* p 내에서 전체 너비 사용 */
+}
+
+button#postBtn:hover {
+  background-color: #1e7e34;
+}
+
+/* 특정 유저 글보기 그룹 스타일 (두 번째 p) */
+p:nth-child(3) {
+  /* "특정 유저 글보기" 단락 */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+p:nth-child(3) > span {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+/* 유저아이디 입력 필드 */
+input#userid {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  flex-grow: 1; /* 남은 공간을 채우도록 성장 */
+}
+
+input#userid:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 특정 유저 글보기 버튼 */
+button#useridBtn {
+  background-color: #ffc107; /* 노란색 */
+  color: #343a40;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#useridBtn:hover {
+  background-color: #e0a800;
+}
+
+/* 글쓰러가기 링크 스타일 */
+p#createpost {
+  background-color: #ffffff;
+  justify-content: center; /* 링크를 중앙에 배치 */
+  padding: 15px 10px;
+}
+
+a[href="createpost.html"] {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px 15px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a[href="createpost.html"]:hover {
+  background-color: #007bff;
+  color: white;
+}

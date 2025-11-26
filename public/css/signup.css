@@ -1,0 +1,77 @@
+/* signup.css */
+
+/* 전체 페이지 스타일 */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  background-color: #e6f4e6; /* 연한 초록색 계열 배경 */
+}
+
+/* 회원가입 컨테이너 (div) 스타일 */
+div {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  width: 100%;
+  max-width: 400px; /* 적당한 너비 제한 */
+  text-align: center;
+}
+
+/* 제목 (회원가입) 스타일 */
+h2 {
+  color: #28a745; /* 초록색 강조 */
+  margin-bottom: 25px;
+  font-size: 2em;
+}
+
+/* 입력 필드 컨테이너 (p) 스타일 */
+p {
+  margin-bottom: 15px;
+  text-align: left; /* 입력 필드를 왼쪽 정렬 */
+}
+
+/* 입력 필드 (input) 스타일 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"] {
+  width: 100%;
+  padding: 12px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* 입력 필드 포커스 시 스타일 */
+input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  outline: none;
+}
+
+/* 회원가입 버튼 스타일 */
+button#signup {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: #28a745; /* 초록색 배경 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* 회원가입 버튼 호버 효과 */
+button#signup:hover {
+  background-color: #1e7e34;
+}

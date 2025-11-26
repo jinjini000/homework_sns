@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포스트 상세페이지</title>
+    <link rel="stylesheet" href="./css/post.css" />
+  </head>
+  <body>
+    <h2>개별 포스트</h2>
+    <div id="postdiv"></div>
+    <button id="update">수정하기</button><button id="delete">삭제하기</button>
+    <script>
+      const updateBtn = document.getElementById("update");
+      const deleteBtn = document.getElementById("delete");
+
+      window.onload = () => {
+        const postdiv = document.getElementById("postdiv");
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const postid = urlParams.get("postid");
+        const token = getCookie("token");
+
+        getPostById(`http://127.0.0.1:8080/post/${postid}`, token).then(
+          (post) => {
+            postdiv.innerHTML = "";
+            const div = document.createElement("div");
+            div.innerHTML = `<p class="postUserId">${post.userid}</p><p class="postCreatedAt">작성일자: ${post.createdAt}</p><p class="postUpdatedAt">수정일자: ${post.updatedAt}</p><p class="postText">${post.text}</p>`;
+            postdiv.appendChild(div);
+            updateBtn.onclick = () => {
+              location.href = `./updatepost.html?postid=${post._id}&text=${post.text}`;
+            };
+            deleteBtn.onclick = () => {
+              delPost(`http://127.0.0.1:8080/post/${postid}`, token).then(
+                () => {
+                  location.href = `./posthome.html`;
+                }
+              );
+            };
+          }
+        );
+      };
+
+      async function getPostById(url, token) {
+        const options = {
+          method: "GET", // HTTP 메서드 설정
+          headers: {
+            "Content-Type": "application/json", // 전송할 데이터 형식 명시
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        try {
+          const response = await fetch(url, options);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          return result;
+        } catch (error) {
+          console.error("POST 요청 중 오류 발생:", error);
+        }
+      }
+
+      async function delPost(url, token) {
+        const options = {
+          method: "DELETE", // HTTP 메서드 설정
+          headers: {
+            "Content-Type": "application/json", // 전송할 데이터 형식 명시
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        try {
+          const response = await fetch(url, options);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          return next();
+        } catch (error) {
+          console.error("DELETE 요청 중 오류 발생:", error);
+        }
+      }
+
+      function getCookie(name) {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split("; ");
+        for (let cookie of cookies) {
+          const [key, value] = cookie.split("=");
+          if (key === name) return value;
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>

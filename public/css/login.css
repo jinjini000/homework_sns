@@ -1,0 +1,96 @@
+/* login.css */
+
+/* 전체 페이지 스타일 */
+body {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f2f5; /* 연한 배경색 */
+}
+
+/* 로그인 컨테이너 (div) 스타일 */
+div {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); /* 그림자 */
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+/* 제목 (로그인) 스타일 */
+h2 {
+  color: #1877f2; /* 파란색 강조 */
+  margin-bottom: 25px;
+  font-size: 1.8em;
+}
+
+/* 입력 필드 컨테이너 (span) 스타일 */
+/* HTML에 span이 두 개 있으므로, 이 스타일은 각 입력 필드를 감싸는 span에 적용됩니다. */
+span {
+  display: block; /* 블록 요소로 만들어 세로로 쌓이게 함 */
+  margin-bottom: 15px;
+}
+
+/* 입력 필드 (input) 스타일 */
+input[type="text"],
+input[type="password"] {
+  width: 90%; /* 내부 div 너비의 90% */
+  padding: 14px 10px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* 입력 필드 포커스 시 스타일 */
+input:focus {
+  border-color: #1877f2;
+  box-shadow: 0 0 0 1px #1877f2;
+  outline: none;
+}
+
+/* 로그인 버튼 스타일 */
+button#login {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 로그인 버튼 호버 효과 */
+button#login:hover {
+  background-color: #166fe5;
+}
+
+/* '계정이 없으면...?' 단락 스타일 */
+p {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #dadde1; /* 구분선 */
+  font-size: 14px;
+  color: #606770;
+}
+
+/* 회원가입 링크 스타일 */
+a[href="./signup.html"] {
+  color: #42b72a; /* 초록색 링크 */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 회원가입 링크 호버 효과 */
+a[href="./signup.html"]:hover {
+  text-decoration: underline;
+}
